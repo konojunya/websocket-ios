@@ -12,7 +12,23 @@
 		9A907F2D1F0D3D2000C1A103 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A907F2B1F0D3D2000C1A103 /* Main.storyboard */; };
 		9A907F2F1F0D3D2000C1A103 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A907F2E1F0D3D2000C1A103 /* Assets.xcassets */; };
 		9A907F321F0D3D2000C1A103 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A907F301F0D3D2000C1A103 /* LaunchScreen.storyboard */; };
+		9A907F3A1F0D3EF700C1A103 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A907F391F0D3EF700C1A103 /* SocketIO.framework */; };
+		9A907F3B1F0D3EF700C1A103 /* SocketIO.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A907F391F0D3EF700C1A103 /* SocketIO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9A907F3C1F0D3EF700C1A103 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9A907F3B1F0D3EF700C1A103 /* SocketIO.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A907F241F0D3D2000C1A103 /* websocket-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "websocket-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +38,7 @@
 		9A907F2E1F0D3D2000C1A103 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A907F311F0D3D2000C1A103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A907F331F0D3D2000C1A103 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A907F391F0D3EF700C1A103 /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIO.framework; path = Carthage/Build/iOS/SocketIO.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A907F3A1F0D3EF700C1A103 /* SocketIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				9A907F261F0D3D2000C1A103 /* websocket-ios */,
+				9A907F3D1F0D3EFC00C1A103 /* frameworks */,
 				9A907F251F0D3D2000C1A103 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +83,14 @@
 			path = "websocket-ios";
 			sourceTree = "<group>";
 		};
+		9A907F3D1F0D3EFC00C1A103 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A907F391F0D3EF700C1A103 /* SocketIO.framework */,
+			);
+			name = frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +101,8 @@
 				9A907F201F0D3D2000C1A103 /* Sources */,
 				9A907F211F0D3D2000C1A103 /* Frameworks */,
 				9A907F221F0D3D2000C1A103 /* Resources */,
+				9A907F3C1F0D3EF700C1A103 /* Embed Frameworks */,
+				9A907F3E1F0D3F0900C1A103 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -131,6 +160,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9A907F3E1F0D3F0900C1A103 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9A907F201F0D3D2000C1A103 /* Sources */ = {
@@ -262,6 +307,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RH75B2UCHQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "websocket-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "konojunya.websocket-ios";
@@ -275,6 +324,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RH75B2UCHQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "websocket-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "konojunya.websocket-ios";
